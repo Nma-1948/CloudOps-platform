@@ -1,0 +1,142 @@
+text,label
+"Docker container crashed unexpectedly after deployment.",container_issue
+"The Docker container running the payment service keeps restarting after yesterday's deployment, causing customers to receive HTTP 503 errors.",container_issue
+"The application container terminated unexpectedly after exhausting the available memory during peak traffic.",container_issue
+"The container failed its health check three consecutive times and Kubernetes removed it from service.",container_issue
+"Docker could not pull the latest application image because the registry authentication token had expired.",container_issue
+"A newly deployed container immediately exited with status code 137 due to an out-of-memory condition.",container_issue
+"The backend API container entered a continuous restart loop after a configuration file was updated incorrectly.",container_issue
+"Engineers observed that the container became unresponsive shortly after processing a large batch of customer requests.",container_issue
+"The Docker daemon is running, but every attempt to start the application container ends with an unexpected runtime error.",container_issue
+"Monitoring detected that the application container has restarted more than twenty times within the last hour.",container_issue
+"The deployment completed successfully, but the container failed all readiness checks and never became available.",container_issue
+"The container is unable to bind to port 8080 because another process is already using that port.",container_issue
+"The application container was automatically terminated after exceeding the configured CPU limit for an extended period.",container_issue
+"The container filesystem switched to read-only mode, preventing the application from writing log files.",container_issue
+"Operations noticed that the Docker image became corrupted after an interrupted image download from the registry.",container_issue
+"The authentication service container exits immediately after startup because a required environment variable is missing.",container_issue
+"Users reported service interruptions after the frontend container repeatedly crashed following the latest software update.",container_issue
+"Container logs show repeated segmentation faults whenever the application processes large image uploads.",container_issue
+"The container cannot establish communication with its dependent database service after deployment.",container_issue
+"Cloud monitoring generated an alert because the container restart count exceeded the defined operational threshold.",container_issue
+"The application container stopped responding to health probes, forcing the orchestration platform to restart it repeatedly.",container_issue
+"High network latency detected between the application server and database.",network_issue
+"Users cannot reach the API because the load balancer is failing health checks.",network_issue
+"Packet loss increased significantly after a network configuration change.",network_issue
+"The database server stopped responding during peak business hours.",database_issue
+"Application requests are failing because the MySQL database connection pool is exhausted.",database_issue
+"Database replication is delayed by more than fifteen minutes.",database_issue
+"The application exceeded the available memory and was terminated by the operating system.",memory_issue
+"Memory usage remained above ninety-five percent for more than ten minutes.",memory_issue
+"The Java application experienced a memory leak causing continuous RAM growth.",memory_issue
+"CPU utilization reached one hundred percent during application deployment.",cpu_issue
+"The web server experienced sustained high CPU usage after the latest software release.",cpu_issue
+"Background worker processes consumed all available CPU resources.",cpu_issue
+"Multiple failed SSH login attempts were detected from an unknown IP address.",security_issue
+"A suspicious process attempted to access protected system files.",security_issue
+"CloudTrail reported an unauthorized API call using invalid credentials.",security_issue
+"Application is running normally and all health checks are passing.",normal
+"CPU, memory and network usage are within acceptable limits.",normal
+"All services are operating normally without any active incidents.",normal
+"Users reported intermittent packet loss between the application server and the database server.",network_issue
+"The network gateway became unreachable after a routing table update.",network_issue
+"DNS resolution failures prevented clients from accessing the application.",network_issue
+"The load balancer stopped forwarding requests because all backend targets failed health checks.",network_issue
+"Firewall rules blocked inbound traffic to the web application after a security update.",network_issue
+"The VPN connection between the production and disaster recovery sites was unexpectedly disconnected.",network_issue
+"Network latency increased significantly during peak business hours, affecting application response times.",network_issue
+"The application server lost connectivity to the authentication service because of a subnet routing issue.",network_issue
+"A failed switch caused multiple application servers to lose network access.",network_issue
+"ICMP monitoring detected that several production servers became unreachable.",network_issue
+"An incorrect DNS configuration redirected users to an invalid server.",network_issue
+"The reverse proxy failed to establish a connection with the backend application.",network_issue
+"The network interface on the production server entered a degraded state.",network_issue
+"Customers experienced connection timeouts because the edge firewall dropped legitimate traffic.",network_issue
+"Application requests failed because the API gateway could not communicate with backend services.",network_issue
+"The network monitoring system detected excessive packet retransmissions across the production environment.",network_issue
+"A routing loop caused intermittent connectivity issues between application services.",network_issue
+"The primary database server unexpectedly shut down during business hours.",database_issue
+"The MySQL database refused new client connections because the maximum connection limit was reached.",database_issue
+"Database replication stopped after the replica lost communication with the primary server.",database_issue
+"A long-running SQL query caused severe database performance degradation.",database_issue
+"The application failed to retrieve customer records because the database was offline.",database_issue
+"Database backups failed because there was insufficient disk space on the backup server.",database_issue
+"The PostgreSQL service failed to start after a configuration change.",database_issue
+"Database transactions were rolled back because of a deadlock between concurrent sessions.",database_issue
+"The database server experienced high disk I/O, causing slow query execution.",database_issue
+"The application encountered timeout errors while waiting for database responses.",database_issue
+"A corrupted database index significantly slowed down query performance.",database_issue
+"The database connection pool was exhausted due to a sudden spike in user requests.",database_issue
+"Database authentication failed because the service account password had expired.",database_issue
+"An unexpected database failover interrupted active client sessions.",database_issue
+"The production database entered recovery mode after an unexpected system crash.",database_issue
+"Database replication lag exceeded the acceptable operational threshold.",database_issue
+"The application could not connect to the database because the database service was not running.",database_issue
+"The application consumed all available RAM and was terminated by the operating system.",memory_issue
+"Memory utilization exceeded ninety-eight percent on the production server.",memory_issue
+"A memory leak caused the Java application to gradually consume all available system memory.",memory_issue
+"The Kubernetes pod was killed because it exceeded its configured memory limit.",memory_issue
+"The application became unresponsive after exhausting available memory resources.",memory_issue
+"CloudWatch generated a high memory utilization alarm for the EC2 instance.",memory_issue
+"The backend service failed because the server ran out of available memory.",memory_issue
+"System monitoring detected continuous memory growth over several hours.",memory_issue
+"The application experienced an out-of-memory exception while processing large files.",memory_issue
+"Memory usage remained critically high even after restarting the application.",memory_issue
+"The Linux kernel invoked the OOM Killer to terminate the application process.",memory_issue
+"The server started swapping heavily because physical memory was exhausted.",memory_issue
+"Insufficient available memory caused application performance to degrade significantly.",memory_issue
+"The analytics service consumed excessive RAM during report generation.",memory_issue
+"The API server crashed after exceeding its memory allocation.",memory_issue
+"The monitoring dashboard reported abnormal memory consumption across multiple servers.",memory_issue
+"The production workload failed because memory resources were exhausted.",memory_issue
+"The application server maintained one hundred percent CPU utilization for more than fifteen minutes.",cpu_issue
+"CPU usage increased dramatically after the latest production deployment.",cpu_issue
+"A runaway background process consumed nearly all available CPU resources.",cpu_issue
+"The Kubernetes node reported sustained high CPU utilization across all workloads.",cpu_issue
+"CloudWatch triggered a CPU utilization alarm for the production EC2 instance.",cpu_issue
+"The application became slow because CPU resources were fully utilized.",cpu_issue
+"An infinite processing loop caused excessive CPU consumption.",cpu_issue
+"The web server experienced CPU spikes whenever customer traffic increased.",cpu_issue
+"Application response times increased because the processor remained under heavy load.",cpu_issue
+"The analytics service consumed excessive CPU while generating reports.",cpu_issue
+"The server load average increased significantly due to high CPU demand.",cpu_issue
+"The API service experienced degraded performance because CPU usage exceeded ninety-five percent.",cpu_issue
+"Monitoring detected abnormal processor utilization across multiple application servers.",cpu_issue
+"The Java application continuously consumed CPU even when idle.",cpu_issue
+"The production workload exceeded the allocated CPU quota in Kubernetes.",cpu_issue
+"The system became unresponsive because all CPU cores were fully utilized.",cpu_issue
+"CPU throttling reduced application performance during peak traffic.",cpu_issue
+"Multiple failed SSH login attempts were detected from several unknown IP addresses within a short period.",security_issue
+"The intrusion detection system reported suspicious outbound network traffic from the application server.",security_issue
+"An unauthorized user attempted to access the production database using invalid credentials.",security_issue
+"CloudTrail detected an IAM user performing privileged actions outside normal business hours.",security_issue
+"The web application firewall blocked several SQL injection attempts against the login page.",security_issue
+"A brute-force attack targeted the SSH service on the production server.",security_issue
+"The application detected repeated cross-site scripting attempts from external clients.",security_issue
+"A security scan identified a critical vulnerability in the web server software.",security_issue
+"The API received multiple requests containing malicious payloads designed to exploit known vulnerabilities.",security_issue
+"Monitoring detected unexpected privilege escalation on the production server.",security_issue
+"The endpoint protection platform quarantined a suspicious executable downloaded by a user.",security_issue
+"An expired TLS certificate caused secure client connections to fail.",security_issue
+"Security monitoring detected repeated authentication failures across multiple user accounts.",security_issue
+"A firewall misconfiguration exposed internal services to the public internet.",security_issue
+"The security audit discovered that sensitive credentials had been committed to the source code repository.",security_issue
+"An unauthorized API token was used to access protected cloud resources.",security_issue
+"The SIEM platform generated a high-severity alert for suspicious account activity.",security_issue
+"All application services are operating normally and responding within the expected response time.",normal
+"System monitoring confirms that CPU, memory, and disk utilization are within normal operating thresholds.",normal
+"The production environment completed all scheduled health checks successfully.",normal
+"Application users are successfully accessing all services without any reported issues.",normal
+"The Kubernetes cluster is healthy and all pods are running without errors.",normal
+"CloudWatch reports that all monitored resources are operating within normal limits.",normal
+"The web application successfully processed all incoming requests during peak traffic.",normal
+"The database is accepting connections and query response times are within acceptable limits.",normal
+"The load balancer reports that all backend targets are healthy.",normal
+"The CI/CD pipeline completed successfully and the deployment finished without errors.",normal
+"The application passed all readiness and liveness health checks.",normal
+"The monitoring dashboard shows no active alerts across the production environment.",normal
+"All scheduled backups completed successfully without any warnings or failures.",normal
+"The API is responding normally and all endpoints returned successful responses.",normal
+"The production infrastructure remains stable with no abnormal events detected.",normal
+"Routine system monitoring confirms that all services are functioning correctly.",normal
+"The platform is operating normally and no incidents require administrator attention.",normal
