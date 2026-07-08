@@ -29,10 +29,4 @@ resource "time_sleep" "wait_for_instance" {
   create_duration = "30s"
 }
 
-resource "aws_lb_target_group_attachment" "app" {
-  depends_on = [time_sleep.wait_for_instance]
 
-  target_group_arn = var.target_group_arn
-  target_id        = aws_instance.app.id
-  port             = 80
-}
