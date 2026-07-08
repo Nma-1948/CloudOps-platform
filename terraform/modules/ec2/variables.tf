@@ -15,5 +15,5 @@ variable "instance_type" {
 }
 
 variable "name" {
-  default = "app-ec2"
+  default = "fastapi-server"
 }
