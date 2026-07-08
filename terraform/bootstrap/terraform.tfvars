@@ -1,0 +1,5 @@
+aws_region         = "eu-west-1"
+github_owner       = "Nma-1948"
+github_repository  = "aws-private-ec2"
+github_branch      = "main"
+role_name          = "github-actions-terraform"
