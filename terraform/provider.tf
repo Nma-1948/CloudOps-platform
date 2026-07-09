@@ -3,7 +3,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project     = "JimmyTech"
+      Project = "FastAPI-AI"
       Environment = "prod"
       ManagedBy   = "Terraform"
     }
