@@ -3,7 +3,7 @@ module "ec2" {
 
   name              = "fastapi-server"
   ami               = data.aws_ami.ubuntu.id
-  instance_type     = "t3.medium"
+  instance_type     = "t3.micro"
 
   vpc_id            = aws_vpc.main.id
   subnet_id         = aws_subnet.public_1.id
