@@ -49,6 +49,15 @@ jobs:
         run: terraform init -reconfigure
         working-directory: terraform/environments/prod
 
+      - name: Import existing IAM Role
+   run: |
+    terraform import aws_iam_role.ec2_ssm_role ec2-ssm-role || echo "Already imported"
+
+     - name: Import existing Instance Profile
+  run: |
+    terraform import aws_iam_instance_profile.ec2 ec2-ssm-profile || echo "Already imported"
+
+        
       
       # Terraform Plan
       
