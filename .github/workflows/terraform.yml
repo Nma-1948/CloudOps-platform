@@ -45,29 +45,24 @@ jobs:
       
       # Terraform Init
       
+            
       - name: Terraform Init
         run: terraform init -reconfigure
-        working-directory: terraform/environments/prod
 
+      # Import existing IAM Role
       - name: Import existing IAM Role
         run: |
-         terraform import aws_iam_role.ec2_ssm_role ec2-ssm-role || echo "Already imported"
+          terraform import aws_iam_role.ec2_ssm_role ec2-ssm-role || echo "Already imported"
 
-       - name: Import existing Instance Profile
-         run: |
+      # Import existing Instance Profile
+      - name: Import existing Instance Profile
+        run: |
           terraform import aws_iam_instance_profile.ec2 ec2-ssm-profile || echo "Already imported"
 
-        
-      
       # Terraform Plan
-      
       - name: Terraform Plan
         run: terraform plan
-        working-directory: terraform/environments/prod
 
-      
       # Terraform Apply
-      
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: terraform/environments/prod
