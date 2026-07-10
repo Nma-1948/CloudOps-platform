@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "alert_email" {
-  description = "glorianmandumele@gmail.com"
+  description = "Email address for cloudwatch alerts"
   type        = string
 }
 
