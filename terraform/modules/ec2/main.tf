@@ -7,10 +7,26 @@ resource "aws_instance" "app" {
 
   user_data = <<-EOF
 #!/bin/bash
-apt update -y
-apt install -y nginx
+set -eux
+
+# Update packages
+apt-get update -y
+
+# Install Nginx
+apt-get install -y nginx
 systemctl enable nginx
 systemctl start nginx
+
+# Install CloudWatch Agent
+wget https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+dpkg -i amazon-cloudwatch-agent.deb
+
+# Start CloudWatch Agent using SSM Parameter Store
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
+  -a fetch-config \
+  -m ec2 \
+  -c ssm:/amazon-cloudwatch-agent/config \
+  -s
 EOF
 
   tags = {
