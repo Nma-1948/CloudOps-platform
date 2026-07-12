@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      id-token: write   # 🔥 REQUIRED for OIDC
+      id-token: write
       contents: read
 
     defaults:
@@ -19,33 +19,23 @@ jobs:
         working-directory: terraform/environments/prod
 
     steps:
-      
+
       # Checkout Code
-      
       - name: Checkout code
         uses: actions/checkout@v4
 
-      
       # Setup Terraform
-      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      
       # Configure AWS (OIDC)
-      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::116101834005:role/github-actions-terraform
           aws-region: eu-west-1
 
-      
-
-      
       # Terraform Init
-      
-            
       - name: Terraform Init
         run: terraform init -reconfigure
 
@@ -58,6 +48,11 @@ jobs:
       - name: Import existing Instance Profile
         run: |
           terraform import aws_iam_instance_profile.ec2 ec2-ssm-profile || echo "Already imported"
+
+      # Import CloudWatch SSM Parameter
+      - name: Import CloudWatch SSM Parameter
+        run: |
+          terraform import aws_ssm_parameter.cloudwatch_config /amazon-cloudwatch-agent/config || echo "Already imported"
 
       # Terraform Plan
       - name: Terraform Plan
