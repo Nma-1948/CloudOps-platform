@@ -34,14 +34,13 @@ EOF
   }
 }
 
-resource "aws_eip" "fastapi" {
-
+resource "aws_eip" "app" {
   domain = "vpc"
 
-  instance = aws_instance.fastapi.id
+  instance = aws_instance.app.id
 
   tags = {
-    Name = "fastapi-eip"
+    Name = "${var.name}-eip"
   }
 }
 
