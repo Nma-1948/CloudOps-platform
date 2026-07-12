@@ -55,7 +55,7 @@ jobs:
           terraform import aws_ssm_parameter.cloudwatch_config /amazon-cloudwatch-agent/config || echo "Already imported"
           
       - name: Show Terraform State
-       run: terraform state list
+        run: terraform state list
 
       # Terraform Plan
       - name: Terraform Plan
