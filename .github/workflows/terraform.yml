@@ -39,20 +39,7 @@ jobs:
       - name: Terraform Init
         run: terraform init -reconfigure
 
-      # Import existing IAM Role
-      - name: Import existing IAM Role
-        run: |
-          terraform import aws_iam_role.ec2_ssm_role ec2-ssm-role || echo "Already imported"
-
-      # Import existing Instance Profile
-      - name: Import existing Instance Profile
-        run: |
-          terraform import aws_iam_instance_profile.ec2 ec2-ssm-profile || echo "Already imported"
-
-      # Import CloudWatch SSM Parameter
-      - name: Import CloudWatch SSM Parameter
-        run: |
-          terraform import aws_ssm_parameter.cloudwatch_config /amazon-cloudwatch-agent/config || echo "Already imported"
+      
           
       - name: Show Terraform State
         run: terraform state list
