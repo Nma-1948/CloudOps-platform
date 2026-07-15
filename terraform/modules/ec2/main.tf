@@ -1,19 +1,25 @@
 resource "aws_instance" "app" {
-  ami                    = var.ami
-  instance_type          = var.instance_type
-  subnet_id              = var.public_subnets[0]
-  vpc_security_group_ids = [data.aws_security_group.ec2_sg.id]
+  ami                         = var.ami
+  instance_type               = var.instance_type
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = [var.security_group_id]
+  iam_instance_profile        = var.iam_instance_profile
+  associate_public_ip_address = true
 
   user_data = templatefile(
-    "${path.module}/templates/cloud-init.yaml",
-    {
-      hostname = var.name
-    }
+    "${path.module}/cloud-init/cloud-init.yaml",
+    {}
   )
 
   tags = {
     Name = var.name
   }
+}
+
+resource "time_sleep" "wait_for_instance" {
+  depends_on = [aws_instance.app]
+
+  create_duration = "30s"
 }
 
 resource "aws_eip" "app" {
