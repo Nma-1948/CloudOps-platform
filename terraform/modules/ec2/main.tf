@@ -15,6 +15,8 @@ resource "aws_instance" "app" {
     }
   )
 
+  user_data_replace_on_change = true
+
   tags = {
     Name = var.name
   }
