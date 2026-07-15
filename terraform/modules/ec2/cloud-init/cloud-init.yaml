@@ -30,13 +30,6 @@ runcmd:
   # Start CloudWatch Agent
   - /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:/amazon-cloudwatch-agent/config -s
 
-  # Install Docker
-  - /opt/install/docker.sh
-
-  # Install K3s
-  - /opt/install/k3s.sh
-
-  # Install Helm
-  - /opt/install/helm.sh
+  
 
 final_message: "Cloud-init completed successfully."
