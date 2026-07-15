@@ -1,0 +1,26 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+write_files:
+
+  - path: /usr/local/bin/docker.sh
+    permissions: "0755"
+    content: |
+      ${file("${path.module}/cloud-init/docker.sh")}
+
+  - path: /usr/local/bin/k3s.sh
+    permissions: "0755"
+    content: |
+      ${file("${path.module}/cloud-init/k3s.sh")}
+
+  - path: /usr/local/bin/helm.sh
+    permissions: "0755"
+    content: |
+      ${file("${path.module}/cloud-init/helm.sh")}
+
+runcmd:
+  - /usr/local/bin/docker.sh
+  - /usr/local/bin/k3s.sh
+  - /usr/local/bin/helm.sh
