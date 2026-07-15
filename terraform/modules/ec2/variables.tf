@@ -25,5 +25,5 @@ variable "name" {
 }
 
 variable "iam_instance_profile" {
-‎  type = string
-‎}
+  type = string
+}
