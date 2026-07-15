@@ -23,3 +23,7 @@ variable "name" {
   type    = string
   default = "fastapi-server"
 }
+
+variable "iam_instance_profile" {
+‎  type = string
+‎}
