@@ -3,4 +3,8 @@ set -eux
 
 curl -sfL https://get.k3s.io | sh -
 
-echo "K3s installed."
+systemctl enable k3s
+
+kubectl get nodes || true
+
+echo "K3s installation completed."
