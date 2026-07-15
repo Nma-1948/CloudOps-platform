@@ -1,4 +1,5 @@
 resource "aws_instance" "app" {
+
   ami                         = var.ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
@@ -6,14 +7,7 @@ resource "aws_instance" "app" {
   iam_instance_profile        = var.iam_instance_profile
   associate_public_ip_address = true
 
-  user_data = templatefile(
-    "${path.module}/cloud-init/cloud-init.yaml",
-    {
-      docker_script = file("${path.module}/cloud-init/docker.sh")
-      k3s_script    = file("${path.module}/cloud-init/k3s.sh")
-      helm_script   = file("${path.module}/cloud-init/helm.sh")
-    }
-  )
+  user_data_base64 = data.cloudinit_config.app.rendered
 
   user_data_replace_on_change = true
 
