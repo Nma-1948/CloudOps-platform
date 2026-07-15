@@ -8,17 +8,17 @@ write_files:
   - path: /usr/local/bin/docker.sh
     permissions: "0755"
     content: |
-      ${file("${path.module}/cloud-init/docker.sh")}
+${indent(6, docker_script)}
 
   - path: /usr/local/bin/k3s.sh
     permissions: "0755"
     content: |
-      ${file("${path.module}/cloud-init/k3s.sh")}
+${indent(6, k3s_script)}
 
   - path: /usr/local/bin/helm.sh
     permissions: "0755"
     content: |
-      ${file("${path.module}/cloud-init/helm.sh")}
+${indent(6, helm_script)}
 
 runcmd:
   - /usr/local/bin/docker.sh
