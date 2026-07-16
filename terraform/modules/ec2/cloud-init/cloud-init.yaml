@@ -6,24 +6,13 @@ write_files:
     content: |
       ${indent(6, docker_script)}
 
-  - path: /tmp/k3s.sh
-    permissions: "0755"
-    content: |
-      ${indent(6, k3s_script)}
-
-  - path: /tmp/helm.sh
-    permissions: "0755"
-    content: |
-      ${indent(6, helm_script)}
-
 runcmd:
-  - bash /tmp/docker.sh
-  - bash /tmp/k3s.sh
-  - bash /tmp/helm.sh
-
   # Install CloudWatch Agent
   - wget -O /tmp/amazon-cloudwatch-agent.deb https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
   - dpkg -i /tmp/amazon-cloudwatch-agent.deb
   - /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:/amazon-cloudwatch-agent/config -s
+
+  # Install Docker
+  - bash /tmp/docker.sh
 
 final_message: "Cloud-init completed successfully."
