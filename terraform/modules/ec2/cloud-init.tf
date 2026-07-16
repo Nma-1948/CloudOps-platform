@@ -11,8 +11,6 @@ data "cloudinit_config" "app" {
       "${path.module}/cloud-init/cloud-init.yaml",
       {
         docker_script = file("${path.module}/cloud-init/docker.sh")
-        k3s_script    = file("${path.module}/cloud-init/k3s.sh")
-        helm_script   = file("${path.module}/cloud-init/helm.sh")
       }
     )
   }
