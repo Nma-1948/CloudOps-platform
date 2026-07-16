@@ -9,11 +9,10 @@ data "cloudinit_config" "app" {
     content = templatefile(
       "${path.module}/cloud-init/cloud-init.yaml.tpl",
       {
-        docker_script = replace(
-  "      ${file("${path.module}/cloud-init/docker.sh")}",
-  "\n",
-  "\n      "
-)
+        docker_script = indent(
+          8,
+          file("${path.module}/cloud-init/docker.sh")
+        )
       }
     )
   }
