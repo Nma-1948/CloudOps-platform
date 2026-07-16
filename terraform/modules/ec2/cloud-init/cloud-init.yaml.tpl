@@ -5,7 +5,7 @@ write_files:
     owner: root:root
     permissions: "0755"
     content: |
-${docker_script}
+        ${docker_script}
 
 runcmd:
   - echo "========== Cloud-init Started =========="
