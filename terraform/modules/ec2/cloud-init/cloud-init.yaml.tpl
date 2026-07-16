@@ -4,8 +4,8 @@ write_files:
   - path: /tmp/docker.sh
     owner: root:root
     permissions: "0755"
-    content: |
-${indent(6, docker_script)}
+    content: | 
+      ${indent(6, docker_script)}
 
 runcmd:
   - echo "========== Cloud-init Started =========="
