@@ -72,3 +72,30 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 |
 helm version
 
 echo "========== Helm Installed =========="
+
+####################################################
+# Install K3s
+####################################################
+
+echo "========== Installing K3s =========="
+
+curl -sfL https://get.k3s.io | sh -
+
+echo "Waiting for K3s to start..."
+sleep 20
+
+systemctl enable k3s
+systemctl start k3s
+
+echo "========== K3s Installed =========="
+
+# Configure kubectl for the ubuntu user
+mkdir -p /home/ubuntu/.kube
+
+cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
+
+sed -i "s/127.0.0.1/localhost/g" /home/ubuntu/.kube/config
+
+chown -R ubuntu:ubuntu /home/ubuntu/.kube
+
+echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >> /home/ubuntu/.bashrc
