@@ -1,19 +1,32 @@
-data "aws_security_group" "ec2_sg" {
-  name   = "my-app-sg"
-  vpc_id = var.vpc_id
-}
-
 resource "aws_instance" "app" {
   ami                         = var.ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = [data.aws_security_group.ec2_sg.id]
-  iam_instance_profile        = var.instance_profile
+  vpc_security_group_ids      = [var.security_group_id]
+  iam_instance_profile        = var.iam_instance_profile
   associate_public_ip_address = var.associate_public_ip
 
   user_data = file("${path.module}/user_data.sh")
 
+  user_data_replace_on_change = true
+
   tags = {
     Name = var.name
+  }
+}
+
+resource "time_sleep" "wait_for_instance" {
+  depends_on = [aws_instance.app]
+
+  create_duration = "30s"
+}
+
+resource "aws_eip" "app" {
+  domain = "vpc"
+
+  instance = aws_instance.app.id
+
+  tags = {
+    Name = "${var.name}-eip"
   }
 }
