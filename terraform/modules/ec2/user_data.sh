@@ -60,3 +60,15 @@ systemctl start docker
 usermod -aG docker ubuntu
 
 echo "========== Docker Installed =========="
+
+####################################################
+# Install Helm
+####################################################
+
+echo "========== Installing Helm =========="
+
+curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+helm version
+
+echo "========== Helm Installed =========="
