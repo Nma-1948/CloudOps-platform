@@ -99,3 +99,18 @@ sed -i "s/127.0.0.1/localhost/g" /home/ubuntu/.kube/config
 chown -R ubuntu:ubuntu /home/ubuntu/.kube
 
 echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >> /home/ubuntu/.bashrc
+
+#########################################
+# Configure kubectl for ssm-user
+#########################################
+
+mkdir -p /home/ssm-user/.kube
+
+cp /etc/rancher/k3s/k3s.yaml /home/ssm-user/.kube/config
+
+chown -R ssm-user:ssm-user /home/ssm-user/.kube
+
+chmod 700 /home/ssm-user/.kube
+chmod 600 /home/ssm-user/.kube/config
+
+echo 'export KUBECONFIG=$HOME/.kube/config' >> /home/ssm-user/.bashrc
