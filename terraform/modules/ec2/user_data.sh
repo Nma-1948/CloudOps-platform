@@ -90,34 +90,3 @@ until [ -f /etc/rancher/k3s/k3s.yaml ]; do
     sleep 2
 done
 
-####################################################
-# Configure kubectl for ubuntu
-####################################################
-
-mkdir -p /home/ubuntu/.kube
-
-cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
-
-chown -R ubuntu:ubuntu /home/ubuntu/.kube
-
-chmod 700 /home/ubuntu/.kube
-chmod 600 /home/ubuntu/.kube/config
-
-grep -qxF 'export KUBECONFIG=$HOME/.kube/config' /home/ubuntu/.bashrc || \
-echo 'export KUBECONFIG=$HOME/.kube/config' >> /home/ubuntu/.bashrc
-
-####################################################
-# Configure kubectl for root
-####################################################
-
-mkdir -p /root/.kube
-
-cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
-
-chmod 700 /root/.kube
-chmod 600 /root/.kube/config
-
-grep -qxF 'export KUBECONFIG=$HOME/.kube/config' /root/.bashrc || \
-echo 'export KUBECONFIG=$HOME/.kube/config' >> /root/.bashrc
-
-echo "========== User Data Completed =========="
