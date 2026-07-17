@@ -15,10 +15,10 @@ https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloud
 dpkg -i /tmp/amazon-cloudwatch-agent.deb
 
 /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
--a fetch-config \
--m ec2 \
--c ssm:/amazon-cloudwatch-agent/config \
--s
+  -a fetch-config \
+  -m ec2 \
+  -c ssm:/amazon-cloudwatch-agent/config \
+  -s
 
 ####################################################
 # Install Docker
@@ -27,10 +27,10 @@ dpkg -i /tmp/amazon-cloudwatch-agent.deb
 apt-get remove -y docker docker-engine docker.io containerd runc || true
 
 apt-get install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
+  ca-certificates \
+  curl \
+  gnupg \
+  lsb-release
 
 install -m 0755 -d /etc/apt/keyrings
 
@@ -48,16 +48,16 @@ $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
 apt-get update
 
 apt-get install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-buildx-plugin \
-    docker-compose-plugin
+  docker-ce \
+  docker-ce-cli \
+  containerd.io \
+  docker-buildx-plugin \
+  docker-compose-plugin
 
 systemctl enable docker
 systemctl start docker
 
-usermod -aG docker ubuntu
+usermod -aG docker ubuntu || true
 
 echo "========== Docker Installed =========="
 
@@ -81,42 +81,43 @@ echo "========== Installing K3s =========="
 
 curl -sfL https://get.k3s.io | sh -
 
-echo "Waiting for K3s to start..."
-sleep 20
-
 systemctl enable k3s
 systemctl start k3s
 
-echo "========== K3s Installed =========="
+echo "Waiting for K3s..."
 
-# Configure kubectl for the ubuntu user
-mkdir -p /home/ubuntu/.kube
-
-cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
-
-sed -i "s/127.0.0.1/localhost/g" /home/ubuntu/.kube/config
-
-chown -R ubuntu:ubuntu /home/ubuntu/.kube
-
-echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >> /home/ubuntu/.bashrc
-
-# Wait until K3s has created the kubeconfig
 until [ -f /etc/rancher/k3s/k3s.yaml ]; do
     sleep 2
 done
 
-# Create kube directory for ssm-user
-mkdir -p /home/ssm-user/.kube
+####################################################
+# Configure kubectl for ubuntu
+####################################################
 
-# Copy kubeconfig
-cp /etc/rancher/k3s/k3s.yaml /home/ssm-user/.kube/config
+mkdir -p /home/ubuntu/.kube
 
-# Change ownership
-chown -R ssm-user:ssm-user /home/ssm-user/.kube
+cp /etc/rancher/k3s/k3s.yaml /home/ubuntu/.kube/config
 
-# Restrict permissions
-chmod 600 /home/ssm-user/.kube/config
+chown -R ubuntu:ubuntu /home/ubuntu/.kube
 
-# Make kubectl automatically use this config
-echo 'export KUBECONFIG=$HOME/.kube/config' > /home/ssm-user/.profile
-chown ssm-user:ssm-user /home/ssm-user/.profile
+chmod 700 /home/ubuntu/.kube
+chmod 600 /home/ubuntu/.kube/config
+
+grep -qxF 'export KUBECONFIG=$HOME/.kube/config' /home/ubuntu/.bashrc || \
+echo 'export KUBECONFIG=$HOME/.kube/config' >> /home/ubuntu/.bashrc
+
+####################################################
+# Configure kubectl for root
+####################################################
+
+mkdir -p /root/.kube
+
+cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
+
+chmod 700 /root/.kube
+chmod 600 /root/.kube/config
+
+grep -qxF 'export KUBECONFIG=$HOME/.kube/config' /root/.bashrc || \
+echo 'export KUBECONFIG=$HOME/.kube/config' >> /root/.bashrc
+
+echo "========== User Data Completed =========="
