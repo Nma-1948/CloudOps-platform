@@ -100,17 +100,23 @@ chown -R ubuntu:ubuntu /home/ubuntu/.kube
 
 echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >> /home/ubuntu/.bashrc
 
-#########################################
-# Configure kubectl for ssm-user
-#########################################
+# Wait until K3s has created the kubeconfig
+until [ -f /etc/rancher/k3s/k3s.yaml ]; do
+    sleep 2
+done
 
+# Create kube directory for ssm-user
 mkdir -p /home/ssm-user/.kube
 
+# Copy kubeconfig
 cp /etc/rancher/k3s/k3s.yaml /home/ssm-user/.kube/config
 
+# Change ownership
 chown -R ssm-user:ssm-user /home/ssm-user/.kube
 
-chmod 700 /home/ssm-user/.kube
+# Restrict permissions
 chmod 600 /home/ssm-user/.kube/config
 
-echo 'export KUBECONFIG=$HOME/.kube/config' >> /home/ssm-user/.bashrc
+# Make kubectl automatically use this config
+echo 'export KUBECONFIG=$HOME/.kube/config' > /home/ssm-user/.profile
+chown ssm-user:ssm-user /home/ssm-user/.profile
