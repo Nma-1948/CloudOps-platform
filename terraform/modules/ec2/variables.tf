@@ -14,15 +14,15 @@ variable "subnet_id" {
   type = string
 }
 
-variable "vpc_id" {
+variable "security_group_id" {
   type = string
 }
 
-variable "instance_profile" {
+variable "iam_instance_profile" {
   type = string
 }
 
 variable "associate_public_ip" {
   type    = bool
-  default = false
+  default = true
 }
