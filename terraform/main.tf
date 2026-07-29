@@ -1,7 +1,7 @@
 module "ec2" {
   source = "./modules/ec2"
 
-  name                 = "cloudops-${var.environment}-server"
+  name                 = "${var.project_name}-${var.environment}-${var.server_name}"
   ami                  = data.aws_ami.ubuntu.id
   instance_type        = var.instance_type
   subnet_id            = aws_subnet.public_1.id
