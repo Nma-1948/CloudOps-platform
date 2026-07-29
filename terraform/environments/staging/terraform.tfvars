@@ -1,4 +1,6 @@
+project_name  = "cloudops"
+server_name   = "gateway"
+environment   = "staging"
+instance_type = "t3.small"
 region         = "eu-west-1"
-environment    = "staging"
-instance_type  = "t3.small"
 alert_email    = "glorianmandumele@gmail.com"
