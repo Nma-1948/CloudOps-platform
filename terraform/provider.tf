@@ -1,11 +1,23 @@
+terraform {
+  required_version = ">= 1.6"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region
 
   default_tags {
     tags = {
-      Project = "FastAPI-AI"
-      Environment = "prod"
+      Project     = var.project_name
+      Environment = var.environment
       ManagedBy   = "Terraform"
+      Owner       = "Nma-1948"
     }
   }
 }
