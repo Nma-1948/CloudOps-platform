@@ -4,6 +4,12 @@ variable "region" {
   default     = "eu-west-1"
 }
 
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+  default     = "dev"
+}
+
 variable "alert_email" {
   description = "Email address for CloudWatch alerts"
   type        = string
