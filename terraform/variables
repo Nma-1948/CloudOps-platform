@@ -17,3 +17,13 @@ variable "alert_email" {
   description = "Email address for CloudWatch alerts"
   type        = string
 }
+
+variable "project_name" {
+  description = "Project name"
+  type        = string
+}
+
+variable "server_name" {
+  description = "Server name"
+  type        = string
+}
