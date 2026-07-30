@@ -1,16 +1,26 @@
 output "vpc_id" {
   description = "VPC ID"
-  value       = aws_vpc.main.id
+  value       = module.network.vpc_id
 }
 
 output "public_subnet_1_id" {
   description = "Public Subnet 1 ID"
-  value       = aws_subnet.public_1.id
+  value       = module.network.public_subnet_1_id
 }
 
 output "public_subnet_2_id" {
   description = "Public Subnet 2 ID"
-  value       = aws_subnet.public_2.id
+  value       = module.network.public_subnet_2_id
+}
+
+output "internet_gateway_id" {
+  description = "Internet Gateway ID"
+  value       = module.network.internet_gateway_id
+}
+
+output "route_table_id" {
+  description = "Public Route Table ID"
+  value       = module.network.route_table_id
 }
 
 output "ec2_instance_id" {
@@ -30,20 +40,30 @@ output "ec2_public_dns" {
 
 output "security_group_id" {
   description = "EC2 Security Group ID"
-  value       = aws_security_group.ec2_sg.id
+  value       = module.security.ec2_security_group_id
 }
 
-output "iam_instance_profile" {
-  description = "IAM Instance Profile"
-  value       = aws_iam_instance_profile.ec2.name
+output "iam_role_name" {
+  description = "EC2 IAM Role"
+  value       = module.iam.role_name
+}
+
+output "instance_profile_name" {
+  description = "EC2 Instance Profile"
+  value       = module.iam.instance_profile_name
 }
 
 output "sns_topic_arn" {
   description = "SNS Topic ARN"
-  value       = aws_sns_topic.alerts.arn
+  value       = module.monitoring.sns_topic_arn
+}
+
+output "cloudwatch_log_group" {
+  description = "CloudWatch Log Group"
+  value       = module.monitoring.log_group_name
 }
 
 output "cloudwatch_agent_parameter" {
-  description = "CloudWatch Agent Parameter Store name"
-  value       = aws_ssm_parameter.cloudwatch_agent_config.name
+  description = "CloudWatch Agent Parameter"
+  value       = module.monitoring.cloudwatch_parameter_name
 }
