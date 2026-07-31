@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: cloudops-config
+  namespace: cloudops
+
+data:
+  APP_NAME: CloudOps Platform
+  ENVIRONMENT: production
+  LOG_LEVEL: info
