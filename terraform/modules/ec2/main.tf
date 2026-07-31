@@ -1,4 +1,4 @@
-resource "aws_instance" "app" {
+resource "aws_instance" "this" {
   ami                         = var.ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id
@@ -6,27 +6,30 @@ resource "aws_instance" "app" {
   iam_instance_profile        = var.iam_instance_profile
   associate_public_ip_address = var.associate_public_ip
 
-  user_data = file("${path.module}/user_data.sh")
+  user_data = var.user_data
 
-  user_data_replace_on_change = true
-
-  tags = {
-    Name = var.name
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
   }
-}
 
-resource "time_sleep" "wait_for_instance" {
-  depends_on = [aws_instance.app]
+  root_block_device {
+    volume_size = 20
+    volume_type = "gp3"
+    encrypted   = true
 
-  create_duration = "30s"
-}
-
-resource "aws_eip" "app" {
-  domain = "vpc"
-
-  instance = aws_instance.app.id
-
-  tags = {
-    Name = "${var.name}-eip"
+    tags = merge(
+      var.tags,
+      {
+        Name = "${var.name}-root-volume"
+      }
+    )
   }
+
+  tags = merge(
+    var.tags,
+    {
+      Name = var.name
+    }
+  )
 }
