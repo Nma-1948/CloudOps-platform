@@ -5,5 +5,7 @@ locals {
     Project     = var.project_name
     Environment = var.environment
     ManagedBy   = "Terraform"
+    Repository  = "CloudOps-platform"
+    Owner       = "Nma-1948"
   }
 }
