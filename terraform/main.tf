@@ -4,9 +4,9 @@ module "ec2" {
   name                 = "${local.prefix}-${var.server_name}"
   ami                  = data.aws_ami.ubuntu.id
   instance_type        = var.instance_type
-  subnet_id            = aws_subnet.public_1.id
-  security_group_id    = aws_security_group.ec2_sg.id
-  iam_instance_profile = aws_iam_instance_profile.ec2.name
+  subnet_id            = module.network.public_subnet_1_id
+security_group_id    = module.security.ec2_security_group_id
+iam_instance_profile = module.iam.instance_profile_name
   associate_public_ip  = true
 
   user_data = templatefile("${path.module}/scripts/user_data.sh.tpl", {
