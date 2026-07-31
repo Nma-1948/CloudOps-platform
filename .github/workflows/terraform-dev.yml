@@ -27,8 +27,17 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: eu-west-1
 
-      - run: terraform init
+      - name: Terraform Init
+        run: terraform init -backend-config=environments/dev/backend.tf
 
-      - run: terraform apply \
-          -auto-approve \
-          -var-file=environments/dev/terraform.tfvars
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -var-file=environments/dev/terraform.tfvars
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var-file=environments/dev/terraform.tfvars
