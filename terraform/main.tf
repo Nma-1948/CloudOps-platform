@@ -16,3 +16,26 @@ module "ec2" {
 
   tags = local.common_tags
 }
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  instance_id = module.ec2.instance_id
+
+  alert_email = var.alert_email
+
+  cloudwatch_agent_config = jsonencode({
+    agent = {
+      metrics_collection_interval = 60
+    }
+
+    metrics = {
+      namespace = "${var.project_name}/${var.environment}"
+    }
+  })
+
+  tags = local.common_tags
+}
