@@ -1,28 +1,45 @@
 variable "name" {
-  type = string
+  description = "EC2 instance name"
+  type        = string
 }
 
 variable "ami" {
-  type = string
+  description = "AMI ID"
+  type        = string
 }
 
 variable "instance_type" {
-  type = string
+  description = "EC2 instance type"
+  type        = string
 }
 
 variable "subnet_id" {
-  type = string
+  description = "Subnet ID"
+  type        = string
 }
 
 variable "security_group_id" {
-  type = string
+  description = "Security Group ID"
+  type        = string
 }
 
 variable "iam_instance_profile" {
-  type = string
+  description = "IAM Instance Profile"
+  type        = string
 }
 
 variable "associate_public_ip" {
-  type    = bool
-  default = true
+  description = "Associate public IP"
+  type        = bool
+}
+
+variable "user_data" {
+  description = "User data script"
+  type        = string
+  default     = ""
+}
+
+variable "tags" {
+  description = "Common tags"
+  type        = map(string)
 }
