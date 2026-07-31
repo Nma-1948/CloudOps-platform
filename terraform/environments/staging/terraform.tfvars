@@ -1,6 +1,8 @@
 project_name  = "cloudops"
-server_name   = "gateway"
 environment   = "staging"
+region        = "eu-west-1"
+
+server_name   = "server"
 instance_type = "t3.small"
-region         = "eu-west-1"
-alert_email    = "glorianmandumele@gmail.com"
+
+alert_email = "glorianmandumele@gmail.com"
