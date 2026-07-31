@@ -9,5 +9,10 @@ module "ec2" {
   iam_instance_profile = aws_iam_instance_profile.ec2.name
   associate_public_ip  = true
 
+  user_data = templatefile("${path.module}/scripts/user_data.sh.tpl", {
+    project_name = var.project_name
+    environment  = var.environment
+  })
+
   tags = local.common_tags
 }
