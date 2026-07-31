@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.6"
+  required_version = ">= 1.5.0"
 
   required_providers {
     aws = {
@@ -13,11 +13,6 @@ provider "aws" {
   region = var.region
 
   default_tags {
-    tags = {
-      Project     = var.project_name
-      Environment = var.environment
-      ManagedBy   = "Terraform"
-      Owner       = "Nma-1948"
-    }
+    tags = local.common_tags
   }
 }
