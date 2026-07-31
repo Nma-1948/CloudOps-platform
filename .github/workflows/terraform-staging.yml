@@ -31,4 +31,4 @@ jobs:
 
       - run: terraform apply \
           -auto-approve \
-          -var-file=environments/dev/terraform.tfvars
+          -var-file=environments/staging/terraform.tfvars
