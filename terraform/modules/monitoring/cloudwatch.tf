@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   threshold           = 80
 
   dimensions = {
-    InstanceId = module.ec2.instance_id
+    InstanceId = var.instance_id
   }
 
   alarm_actions = [
