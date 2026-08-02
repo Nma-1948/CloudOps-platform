@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "alerts" {
   name = "${local.prefix}-alerts"
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 resource "aws_sns_topic_subscription" "email" {
