@@ -1,8 +1,8 @@
 resource "aws_cloudwatch_log_group" "application" {
   name              = "/${var.project_name}/${var.environment}/application"
-  retention_in_days = 30
+  retention_in_days = 1
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
