@@ -7,9 +7,6 @@ terraform {
       version = "~> 6.0"
     }
 
-    cloudinit = {
-      source  = "hashicorp/cloudinit"
-      version = "~> 2.3"
-    }
+   
   }
 }
