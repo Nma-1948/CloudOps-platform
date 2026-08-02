@@ -62,5 +62,5 @@ resource "aws_ssm_parameter" "cloudwatch_agent_config" {
     }
   })
 
-  tags = local.common_tags
+  tags = var.tags
 }
