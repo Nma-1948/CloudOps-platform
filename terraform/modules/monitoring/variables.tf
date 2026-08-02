@@ -1,23 +1,29 @@
 variable "project_name" {
-  type = string
+  description = "Project name"
+  type        = string
 }
 
 variable "environment" {
-  type = string
+  description = "Deployment environment"
+  type        = string
 }
 
 variable "instance_id" {
-  type = string
+  description = "EC2 instance ID"
+  type        = string
 }
 
 variable "alert_email" {
-  type = string
+  description = "Email address for monitoring alerts"
+  type        = string
 }
 
 variable "cloudwatch_agent_config" {
-  type = string
+  description = "CloudWatch Agent configuration"
+  type        = string
 }
 
 variable "tags" {
-  type = map(string)
+  description = "Common resource tags"
+  type        = map(string)
 }
