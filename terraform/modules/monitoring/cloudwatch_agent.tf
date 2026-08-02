@@ -1,6 +1,6 @@
 resource "aws_ssm_parameter" "cloudwatch_agent_config" {
-  name  = "/${var.project_name}/${var.environment}/cloudwatch-agent/config"
-  type  = "String"
+  name = "/${var.project_name}/${var.environment}/cloudwatch-agent/config"
+  type = "String"
 
   value = jsonencode({
     agent = {
@@ -47,13 +47,13 @@ resource "aws_ssm_parameter" "cloudwatch_agent_config" {
         files = {
           collect_list = [
             {
-              file_path      = "/var/log/syslog"
-              log_group_name = "${var.project_name}-${var.environment}-syslog"
+              file_path       = "/var/log/syslog"
+              log_group_name  = "${var.project_name}-${var.environment}-syslog"
               log_stream_name = "{instance_id}"
             },
             {
-              file_path      = "/var/log/auth.log"
-              log_group_name = "${var.project_name}-${var.environment}-auth"
+              file_path       = "/var/log/auth.log"
+              log_group_name  = "${var.project_name}-${var.environment}-auth"
               log_stream_name = "{instance_id}"
             }
           ]
