@@ -43,7 +43,7 @@ resource "aws_cloudwatch_metric_alarm" "status_check" {
   threshold           = 0
 
   dimensions = {
-    InstanceId = module.ec2.instance_id
+    InstanceId = var.instance_id
   }
 
   alarm_actions = [
@@ -68,7 +68,7 @@ resource "aws_cloudwatch_metric_alarm" "memory" {
   threshold           = 80
 
   dimensions = {
-    InstanceId = module.ec2.instance_id
+    InstanceId = var.instance_id
   }
 
   alarm_actions = [
@@ -93,7 +93,7 @@ resource "aws_cloudwatch_metric_alarm" "disk" {
   threshold           = 85
 
   dimensions = {
-    InstanceId = module.ec2.instance_id
+    InstanceId = var.instance_id
   }
 
   alarm_actions = [
