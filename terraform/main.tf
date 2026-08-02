@@ -52,7 +52,7 @@ module "monitoring" {
   project_name = var.project_name
   environment  = var.environment
 
-  instance_id = module.ec2.instance_id
+  instance_id = var.instance_id
 
   alert_email = var.alert_email
 
