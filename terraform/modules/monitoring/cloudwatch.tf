@@ -28,7 +28,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
     aws_sns_topic.alerts.arn
   ]
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "status_check" {
@@ -54,7 +54,7 @@ resource "aws_cloudwatch_metric_alarm" "status_check" {
     aws_sns_topic.alerts.arn
   ]
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory" {
@@ -79,7 +79,7 @@ resource "aws_cloudwatch_metric_alarm" "memory" {
     aws_sns_topic.alerts.arn
   ]
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "disk" {
@@ -104,5 +104,5 @@ resource "aws_cloudwatch_metric_alarm" "disk" {
     aws_sns_topic.alerts.arn
   ]
 
-  tags = local.common_tags
+  tags = var.tags
 }
