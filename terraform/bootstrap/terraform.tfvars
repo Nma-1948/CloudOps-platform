@@ -1,5 +1,5 @@
 aws_region        = "eu-west-1"
 github_owner      = "Nma-1948"
 github_repository = "CloudOps-platform"
-github_branch     = "main"
+github_branch     = "staging"
 role_name         = "github-actions-terraform"
