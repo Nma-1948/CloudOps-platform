@@ -24,6 +24,27 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Diagnose GitHub OIDC
+        shell: bash
+        run: |
+          set -e
+
+          TOKEN_RESPONSE=$(curl -sS \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL")
+
+          TOKEN=$(echo "$TOKEN_RESPONSE" | python3 -c \
+            'import sys,json; print(json.load(sys.stdin)["value"])')
+
+          PAYLOAD=$(echo "$TOKEN" | cut -d '.' -f2)
+
+          case $(( ${#PAYLOAD} % 4 )) in
+            2) PAYLOAD="${PAYLOAD}==" ;;
+            3) PAYLOAD="${PAYLOAD}=" ;;
+          esac
+
+          echo "$PAYLOAD" | base64 -d | python3 -m json.tool
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
